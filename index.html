@@ -39,9 +39,14 @@
           $('#emoji').append("<img alt='"+name+"' title='"+name+"' src='" + emojis[i] + "'>")
         })
       })
-      setInterval(function(){
+      speed = 1000
+
+      function changePlaces(){
+        speed -= 50
         $('img').shuffle()
-      }, 1000)
+        setTimeout(changePlaces, speed)
+      }
+      changePlaces()
     </script>
   </body>
 </html>
