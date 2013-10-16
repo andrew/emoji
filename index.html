@@ -8,13 +8,12 @@
     <script type="text/javascript" src="ZeroClipboard.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
     <script type="text/javascript" charset="utf-8">
-      var clip = new ZeroClipboard(); 
       $.getJSON('https://api.github.com/emojis', function(emojis){
         $.each(emojis, function(i, emoji){
-          $('#emoji').append("<img alt=':"+i+":' title=':"+i+":' src='" + emojis[i] + "'>")
-        })
-        $('img').click(function(){
-          clip.setText($(this).attr('title'));
+          name = ':'+i+':'
+          $('#emoji').append("<img alt='"+name+"' title='"+name+"' src='" + emojis[i] + "'>")
+          clip = new ZeroClipboard($("img[alt='"+name+"']")); 
+          clip.setText(name);
         })
       })
     </script>
