@@ -42,7 +42,7 @@
       speed = 1000
 
       function changePlaces(){
-        speed -= 50
+        if(speed > 300) { speed -= 50 }
         $('img').shuffle()
         setTimeout(changePlaces, speed)
       }
