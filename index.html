@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>EMOJI!!!</title>
+  </head>
+  <body>
+    <div id="emoji"></div>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+      $.getJSON('https://api.github.com/emojis', function(emojis){
+        console.log(emojis)
+        $.each(emojis, function(i, emoji){
+          $('#emoji').append("<img src=" + emojis[i] + ">")
+        })
+      })
+    </script>
+  </body>
+</html>
