@@ -7,6 +7,31 @@
     <div id="emoji"></div>
     <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
     <script type="text/javascript" charset="utf-8">
+    (function($){
+ 
+        $.fn.shuffle = function() {
+ 
+            var allElems = this.get(),
+                getRandom = function(max) {
+                    return Math.floor(Math.random() * max);
+                },
+                shuffled = $.map(allElems, function(){
+                    var random = getRandom(allElems.length),
+                        randEl = $(allElems[random]).clone(true)[0];
+                    allElems.splice(random, 1);
+                    return randEl;
+               });
+ 
+            this.each(function(i){
+                $(this).replaceWith($(shuffled[i]));
+            });
+ 
+            return $(shuffled);
+ 
+        };
+ 
+    })(jQuery);
+    
       $.getJSON('https://api.github.com/emojis', function(emojis){
 
         $.each(emojis, function(i, emoji){
@@ -14,6 +39,9 @@
           $('#emoji').append("<img alt='"+name+"' title='"+name+"' src='" + emojis[i] + "'>")
         })
       })
+      setInterval(function(){
+        $('img').shuffle()
+      }, 1000)
     </script>
   </body>
 </html>
